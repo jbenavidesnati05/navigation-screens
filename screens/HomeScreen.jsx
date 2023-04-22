@@ -15,52 +15,55 @@ export default function HomeScreen({navigation}){
   const [password, setpassword] = useState('');
   const [message,  setmessage] = useState('');
 
-    return(
+    return (
       <View style={styles.container}>
-        <Text style={{fontWeight:'bold', marginBottom:10}}>INICIO DE SESION</Text>
+        <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
+          INICIO DE SESION
+        </Text>
         {/* USERNAME  */}
         <TextInput
           label="Usuario"
-          mode='outlined'
-          left = {<TextInput.Icon  icon="account"></TextInput.Icon>}
-          onChangeText={username => setusername(username)}
+          mode="outlined"
+          left={<TextInput.Icon icon="account"></TextInput.Icon>}
+          onChangeText={(username) => setusername(username)}
           value={username}
         ></TextInput>
         {/* PASSWORD  */}
         <TextInput
           label="Contraseña"
-          mode='outlined'
-          left = {<TextInput.Icon  icon="eye"></TextInput.Icon>}
-          onChangeText={password => setpassword(password)}
+          mode="outlined"
+          left={<TextInput.Icon icon="eye"></TextInput.Icon>}
+          onChangeText={(password) => setpassword(password)}
           value={password}
           secureTextEntry
         ></TextInput>
         {/* INGRESAR  */}
         <Button
           icon="login"
-          mode='contained'
-          onPress={()=>{
-            let fuser = users.find(usr => usr.username == username && usr.password == password )
-            if(fuser != undefined){
-              const {name, password} = fuser;
-              navigation.navigate('Profile', {name:name , password:password})
-              setmessage('')
-            }else{
-              setmessage('usuario y/o contraseña invalidos')
+          mode="contained"
+          onPress={() => {
+            let fuser = users.find(
+              (usr) => usr.username == username && usr.password == password
+            );
+            if (fuser != undefined) {
+              const { name, password } = fuser;
+              navigation.navigate("Profile", {
+                name: name,
+                password: password,
+              });
+              setmessage("");
+            } else {
+              setmessage("usuario y/o contraseña invalidos");
             }
           }}
         >
-        Ingresar
+          Ingresar
         </Button>
-        <Text
-        style = {{color : "red"}}        
-        >
-        {message}
-        </Text>
+        <Text style={{ color: "red" }}>{message}</Text>
         <Button
           title="Ir a Perfil del Usuario"
-          onPress={()=>{
-            navigation.navigate('Profile')
+          onPress={() => {
+            navigation.navigate("Profile");
           }}
         />
       </View>
