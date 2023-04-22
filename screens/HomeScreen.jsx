@@ -37,9 +37,18 @@ export default function HomeScreen({navigation}){
         ></TextInput>
         {/* INGRESAR  */}
         <Button
-        icon="login"
-        mode='contained'
-        onPress={()=>{}}
+          icon="login"
+          mode='contained'
+          onPress={()=>{
+            let fuser = users.find(usr => usr.username == username && usr.password == password )
+            if(fuser != undefined){
+              const {name, password} = fuser;
+              navigation.navigate('Profile', {name:name , password:password})
+              setmessage('')
+            }else{
+              setmessage('usuario y/o contraseña invalidos')
+            }
+          }}
         >
         Ingresar
         </Button>
